@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- EmailJS SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -31,6 +33,8 @@
         }
 
         /* header / nav */
+        /* NAVBAR */
+        /* NAVBAR */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -39,21 +43,45 @@
             flex-wrap: wrap;
         }
 
+        /* LOGO */
         .logo {
-            font-size: 1.8rem;
+            display: flex;
+            align-items: flex-start;
+            /* important */
+        }
+
+        .sun-icon {
+            width: 55px;
+            /* control size */
+            height: auto;
+            margin-right: 12px;
+        }
+
+        /* Text block */
+        .text-area {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* NECTARIOUS */
+        .brand-title {
+            font-size: 2rem;
             font-weight: 700;
-            color: #4ebd44; 
-            text-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            color: #4ebd44;
+            line-height: 1.1;
         }
 
-        .logo span {
-            color: #1e2f4e;
+        /* SUN POWER */
+        .brand-sub {
+            font-size: 0.9rem;
             font-weight: 400;
-            font-size: 1rem;
-            display: block;
-            line-height: 1.2;
+            letter-spacing: 3px;
+            color: #1f6e1f;
+            /* Dark Green */
+            margin-top: 4px;
         }
 
+        /* NAV LINKS */
         .nav-links {
             display: flex;
             gap: 32px;
@@ -63,12 +91,30 @@
         .nav-links a {
             text-decoration: none;
             color: #1e2f4e;
-            transition: 0.2s;
-            cursor: pointer;
+            transition: 0.3s;
         }
 
         .nav-links a:hover {
             color: #4ebd44;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .brand-sub {
+                margin-left: 0;
+            }
+
+            .nav-links {
+                justify-content: center;
+                gap: 20px;
+                flex-wrap: wrap;
+            }
         }
 
         /* buttons */
@@ -178,7 +224,7 @@
             background: white;
             border-radius: 24px;
             padding: 32px 24px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
             transition: 0.2s;
             border: 1px solid #e3f0e0;
         }
@@ -305,10 +351,41 @@
             border-radius: 48px 48px 0 0;
         }
 
+        /* Desktop Layout */
         .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-            gap: 40px;
+            display: flex;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        /* First column bigger */
+        .footer-grid>div:first-child {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        /* Other columns */
+        .footer-grid>div:not(:first-child) {
+            flex: 1;
+            min-width: 160px;
+        }
+
+        /* Tablet */
+        @media (max-width: 992px) {
+            .footer-grid {
+                gap: 40px;
+            }
+
+            .footer-grid>div {
+                flex: 1 1 45%;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 576px) {
+            .footer-grid>div {
+                flex: 1 1 100%;
+            }
         }
 
         .footer-grid a {
@@ -316,11 +393,23 @@
             text-decoration: none;
             display: block;
             margin: 8px 0;
+            transition: 0.3s ease;
+        }
+
+        .footer-grid a:hover {
+            color: #4ebd44;
+            padding-left: 4px;
         }
 
         .footer-grid i {
             margin-right: 10px;
             color: #4ebd44;
+        }
+
+        .copyright {
+            text-align: center;
+            color: #96a9c2;
+            margin-top: 10px;
         }
 
         hr {
@@ -342,7 +431,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0, 0, 0, 0.5);
             align-items: center;
             justify-content: center;
         }
@@ -355,7 +444,7 @@
             width: 90%;
             max-height: 80vh;
             overflow-y: auto;
-            box-shadow: 0 30px 50px rgba(0,0,0,0.3);
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.3);
             position: relative;
             border-top: 8px solid #4ebd44;
         }
@@ -370,7 +459,10 @@
             color: #888;
             transition: 0.2s;
         }
-        .close-modal:hover { color: #4ebd44; }
+
+        .close-modal:hover {
+            color: #4ebd44;
+        }
 
         .modal h2 {
             margin-bottom: 20px;
@@ -396,6 +488,7 @@
             margin: 16px 0;
             border-left: 4px solid #4ebd44;
         }
+
         .subsidy-amount {
             font-size: 2rem;
             font-weight: 700;
@@ -403,7 +496,9 @@
         }
 
         /* calculator form inside modal */
-        .modal input, .modal select, .modal textarea {
+        .modal input,
+        .modal select,
+        .modal textarea {
             width: 100%;
             padding: 14px 18px;
             margin: 12px 0;
@@ -412,10 +507,13 @@
             font-size: 1rem;
             background-color: white;
         }
-        .modal input:focus, .modal select:focus {
+
+        .modal input:focus,
+        .modal select:focus {
             border-color: #4ebd44;
             outline: none;
         }
+
         .modal button {
             width: 100%;
             margin-top: 10px;
@@ -428,16 +526,19 @@
             cursor: pointer;
             color: #1e2f4e;
         }
+
         .modal button:hover {
             background: #3fa337;
             color: white;
         }
+
         .radio-group {
             display: flex;
             gap: 30px;
             margin: 20px 0 10px;
             justify-content: center;
         }
+
         .radio-group label {
             display: flex;
             align-items: center;
@@ -445,12 +546,14 @@
             font-weight: 500;
             cursor: pointer;
         }
+
         .radio-group input[type="radio"] {
             width: 18px;
             height: 18px;
             accent-color: #4ebd44;
             margin: 0;
         }
+
         .calc-result {
             background: #eef6ed;
             border-radius: 40px;
@@ -461,6 +564,7 @@
             font-weight: 600;
             border: 2px solid #4ebd44;
         }
+
         #formStatus {
             margin-top: 15px;
             text-align: center;
@@ -468,112 +572,179 @@
         }
 
         @media (max-width: 700px) {
-            .navbar { flex-direction: column; gap: 16px; }
-            .hero-content h1 { font-size: 2rem; }
+            .navbar {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
+
 <body>
     <div class="container">
 
         <!-- navigation with clickable links (modals) -->
-        <div class="navbar">
-            <div class="logo">☀️ NECTARIOUS <span>sun power</span></div>
-            <div class="nav-links">
-                <a href="#" id="homeLink">Home</a>
-                <a href="#" id="subsidyLink">Subsidy</a>
-                <a href="#" id="aboutLink">About</a>
-                <a href="#" id="contactLink">Contact</a>
-            </div>
-        </div>
+        <div class="container">
+            <div class="navbar">
 
-        <!-- 1. HERO section -->
-        <div class="hero">
-            <div class="hero-content">
-                <h1>Switch to Solar & Slash Your Electricity Bills with Nectarious Sun Power</h1>
-                <p>Reliable rooftop solar solutions for homes, businesses & societies in Ahmedabad — tailored for maximum savings & sustainability.</p>
-                <div class="hero-buttons">
-                    <a href="#" class="btn" id="openModalBtn"><i class="fas fa-calendar-check"></i> Book Your Free Solar Consultation</a>
-                    <a href="#" class="btn btn-outline" id="openCalculatorBtn"><i class="fas fa-calculator"></i> Calculate Your Solar Plant Requirement</a>
+                <!-- LOGO -->
+                <div class="logo">
+                    <img src="Logo.JPG.jpeg" alt="Nectarious Logo" class="sun-icon">
+                    <div class="text-area">
+                        <div class="brand-title">NECTARIOUS</div>
+                        <div class="brand-sub"><b>SUN POWER</b></div>
+                    </div>
                 </div>
+
+                <!-- NAV LINKS -->
+                <div class="nav-links">
+                    <a href="#" id="homeLink">Home</a>
+                    <a href="#" id="subsidyLink">Subsidy</a>
+                    <a href="#" id="aboutLink">About</a>
+                    <a href="#" id="contactLink">Contact</a>
+                </div>
+
             </div>
         </div>
 
-        <!-- 2. WHY GO SOLAR WITH US -->
-        <h2 class="section-title">Why go solar with us</h2>
-        <div class="cards-grid">
-            <div class="card">
-                <i class="fas fa-user-tie"></i>
-                <h3>Trusted solar experts in Ahmedabad</h3>
-                <p>Helping homeowners & businesses save on electricity bills with local expertise.</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-tools"></i>
-                <h3>End-to-end service</h3>
-                <p>From rooftop inspection to installation & support – we handle everything.</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-hand-holding-usd"></i>
-                <h3>Easy financing & subsidies</h3>
-                <p>Assistance with PM Surya Ghar / Gujarat state benefits. Zero stress paperwork.</p>
-                <div class="badge">subsidy available*</div>
-            </div>
-            <div class="card">
-                <i class="fas fa-solar-panel"></i>
-                <h3>High-quality + certified</h3>
-                <p>Long-lasting performance, certified engineers, premium panels.</p>
-            </div>
-        </div>
+    </div>
 
-        <!-- 3. OUR SOLAR SOLUTIONS -->
-        <h2 class="section-title">Our solar solutions</h2>
-        <div class="cards-grid">
-            <div class="card"><i class="fas fa-home"></i><h3>Residential Solar</h3><p>Clean & efficient systems to reduce household power expenses.</p></div>
-            <div class="card"><i class="fas fa-industry"></i><h3>Commercial Solar</h3><p>Custom solutions for businesses, factories.</p></div>
-            <div class="card"><i class="fas fa-building"></i><h3>Housing Societies & Apartments</h3><p>Scalable solar for multi-unit buildings.</p></div>
-            <div class="card"><i class="fas fa-network-wired"></i><h3>On-Grid / Off-Grid / Hybrid</h3><p>Flexible configurations.</p></div>
-        </div>
-        <!-- 4. HOW IT WORKS -->
-        <h2 class="section-title">Simple 3‑step process</h2>
-        <div class="step-flex">
-            <div class="step-item"><div class="step-num">1</div><h3>Free Solar Assessment</h3><p>Expert visit & rooftop feasibility check.</p></div>
-            <div class="step-item"><div class="step-num">2</div><h3>Safe Installation & Setup</h3><p>Certified team, net-metering & subsidy support.</p></div>
-            <div class="step-item"><div class="step-num">3</div><h3>Reliable After-Sales Services</h3><p>Continues support & maintainance you can trust.</p></div>
-        </div>
-        <!-- 5. BENEFITS -->
-        <h2 class="section-title">Benefits of going solar</h2>
-        <ul class="benefits-list">
-            <li><i class="fas fa-bolt"></i> Reduce your electricity bill significantly</li>
-            <li><i class="fas fa-coins"></i> Earn credits with net-metering</li>
-            <li><i class="fas fa-leaf"></i> Reliable & sustainable clean energy</li>
-            <li><i class="fas fa-wrench"></i> Low maintenance & long operational life</li>
-            <li><i class="fas fa-home"></i> Increase home value</li>
-        </ul>
-        <!-- 6. SUBSIDY (visual) -->
-        <div class="subsidy-box">
-            <h2 style="font-size: 2rem; margin-bottom: 16px;">💰 Government subsidy & financial help</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 24px;">We assist with <strong>PM Surya Ghar: Muft Bijli Yojana</strong> and Gujarat state benefits. For residential, up to ₹78,000 subsidy for systems above 3kW. low down payment options & Easy EMI plans available.</p>
-            <a href="#" class="btn" id="subsidyLinkFromBox"><i class="fas fa-file-invoice"></i> Check your eligibility</a>
-        </div>
-        <!-- 7. TESTIMONIALS -->
-        <h2 class="section-title">Hear from Ahmedabad customers</h2>
-        <div class="testimonial-grid">
-            <div class="testimonial"><i class="fas fa-quote-left" style="color:#4ebd44;font-size:1.8rem;"></i><p>“After installing solar, bills dropped almost to zero. They handled subsidy paperwork!”</p><div class="stars">★★★★★</div><p><strong>— Prerana Mehta, Bopal</strong></p></div>
-            <div class="testimonial"><i class="fas fa-quote-left" style="color:#4ebd44;font-size:1.8rem;"></i><p>“Perfect hybrid system for our textile unit – saved 40%. Great support.”</p><div class="stars">★★★★★</div><p><strong>— Rohan Patel, Textile</strong></p></div>
-            <div class="testimonial"><i class="fas fa-quote-left" style="color:#4ebd44;font-size:1.8rem;"></i><p>“Apartment society went solar, no maintenance hikes. 3D layout was impressive.”</p><div class="stars">★★★★★</div><p><strong>— Altezza Eva, Shilaj</strong></p></div>
-        </div>
-        <!-- 8. ABOUT US teaser -->
-        <div style="background: #eef6ed; border-radius: 48px; padding: 48px; margin: 48px 0; border-right: 6px solid #4ebd44;">
-            <h2 class="section-title">About Nectarious Sun Power</h2>
-            <p style="font-size: 1.2rem; max-width: 800px;">We are a local Ahmedabad-based team on a mission to bring solar to every home. With years of experience in rooftop engineering and a passion for sustainability, we deliver quality without jargon. Every installation reflects our commitment to reliability, savings, and clean future.</p>
-            <div style="display: flex; gap: 32px; margin-top: 32px; flex-wrap: wrap;">
-                <span><i class="fas fa-check-circle" style="color:#4ebd44;"></i> 8+ years local expertise</span>
-                <span><i class="fas fa-check-circle" style="color:#4ebd44;"></i> 500+ happy families</span>
-                <span><i class="fas fa-check-circle" style="color:#4ebd44;"></i> Certified engineers</span>
+    <!-- 1. HERO section -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Switch to Solar & Slash Your Electricity Bills with Nectarious Sun Power</h1>
+            <p>Reliable rooftop solar solutions for homes, businesses & societies in Ahmedabad — tailored for maximum
+                savings & sustainability.</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn" id="openModalBtn"><i class="fas fa-calendar-check"></i> Book Your Free Solar
+                    Consultation</a>
+                <a href="#" class="btn btn-outline" id="openCalculatorBtn"><i class="fas fa-calculator"></i> Calculate
+                    Your Solar Plant Requirement</a>
             </div>
         </div>
+    </div>
 
-        <!-- NO separate bottom CTA - removed as requested -->
+    <!-- 2. WHY GO SOLAR WITH US -->
+    <h2 class="section-title">Why go solar with us</h2>
+    <div class="cards-grid">
+        <div class="card">
+            <i class="fas fa-user-tie"></i>
+            <h3>Trusted solar experts in Ahmedabad</h3>
+            <p>Helping homeowners & businesses save on electricity bills with local expertise.</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-tools"></i>
+            <h3>End-to-end service</h3>
+            <p>From rooftop inspection to installation & support – we handle everything.</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-hand-holding-usd"></i>
+            <h3>Easy financing & subsidies</h3>
+            <p>Assistance with PM Surya Ghar / Gujarat state benefits. Zero stress paperwork.</p>
+            <div class="badge">Subsidy available*</div>
+        </div>
+        <div class="card">
+            <i class="fas fa-solar-panel"></i>
+            <h3>High-quality + certified</h3>
+            <p>Long-lasting performance, certified engineers, premium panels.</p>
+        </div>
+    </div>
+
+    <!-- 3. OUR SOLAR SOLUTIONS -->
+    <h2 class="section-title">Our solar solutions</h2>
+    <div class="cards-grid">
+        <div class="card"><i class="fas fa-home"></i>
+            <h3>Residential Solar</h3>
+            <p>Clean & efficient systems to reduce household power expenses.</p>
+        </div>
+        <div class="card"><i class="fas fa-industry"></i>
+            <h3>Commercial Solar</h3>
+            <p>Custom solutions for businesses, factories.</p>
+        </div>
+        <div class="card"><i class="fas fa-building"></i>
+            <h3>Housing Societies & Apartments</h3>
+            <p>Scalable solar for multi-unit buildings.</p>
+        </div>
+        <div class="card"><i class="fas fa-network-wired"></i>
+            <h3>On-Grid / Off-Grid / Hybrid</h3>
+            <p>Flexible configurations.</p>
+        </div>
+    </div>
+    <!-- 4. HOW IT WORKS -->
+    <h2 class="section-title">Simple 3‑step process</h2>
+    <div class="step-flex">
+        <div class="step-item">
+            <div class="step-num">1</div>
+            <h3>Free Solar Assessment</h3>
+            <p>Expert visit & rooftop feasibility check.</p>
+        </div>
+        <div class="step-item">
+            <div class="step-num">2</div>
+            <h3>Safe Installation & Setup</h3>
+            <p>Certified team, net-metering & subsidy support.</p>
+        </div>
+        <div class="step-item">
+            <div class="step-num">3</div>
+            <h3>Reliable After-Sales Services</h3>
+            <p>Continues support & maintainance you can trust.</p>
+        </div>
+    </div>
+    <!-- 5. BENEFITS -->
+    <h2 class="section-title">Benefits of going solar</h2>
+    <ul class="benefits-list">
+        <li><i class="fas fa-bolt"></i> Reduce your electricity bill significantly</li>
+        <li><i class="fas fa-coins"></i> Earn credits with net-metering</li>
+        <li><i class="fas fa-leaf"></i> Reliable & sustainable clean energy</li>
+        <li><i class="fas fa-wrench"></i> Low maintenance & long operational life</li>
+        <li><i class="fas fa-home"></i> Increase home value</li>
+    </ul>
+    <!-- 6. SUBSIDY (visual) -->
+    <div class="subsidy-box">
+        <h2 style="font-size: 2rem; margin-bottom: 16px;">💰 Government subsidy & financial help</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 24px;">We assist with <strong>PM Surya Ghar: Muft Bijli
+                Yojana</strong> and Gujarat state benefits. For residential, up to ₹78,000 subsidy for systems above
+            3kW. low down payment options & Easy EMI plans available.</p>
+        <a href="#" class="btn" id="subsidyLinkFromBox"><i class="fas fa-file-invoice"></i> Check your eligibility</a>
+    </div>
+    <!-- 7. TESTIMONIALS -->
+    <h2 class="section-title">Hear from Ahmedabad customers</h2>
+    <div class="testimonial-grid">
+        <div class="testimonial"><i class="fas fa-quote-left" style="color:#4ebd44;font-size:1.8rem;"></i>
+            <p>“After installing solar, bills dropped almost to zero. They handled subsidy paperwork!”</p>
+            <div class="stars">★★★★★</div>
+            <p><strong>— Prerana Mehta, Bopal</strong></p>
+        </div>
+        <div class="testimonial"><i class="fas fa-quote-left" style="color:#4ebd44;font-size:1.8rem;"></i>
+            <p>“Perfect hybrid system for our textile unit – saved 40%. Great support.”</p>
+            <div class="stars">★★★★★</div>
+            <p><strong>— Rohan Patel, Textile</strong></p>
+        </div>
+        <div class="testimonial"><i class="fas fa-quote-left" style="color:#4ebd44;font-size:1.8rem;"></i>
+            <p>“Apartment society went solar, no maintenance hikes. 3D layout was impressive.”</p>
+            <div class="stars">★★★★★</div>
+            <p><strong>— Altezza Eva, Shilaj</strong></p>
+        </div>
+    </div>
+    <!-- 8. ABOUT US teaser -->
+    <div
+        style="background: #eef6ed; border-radius: 48px; padding: 48px; margin: 48px 0; border-right: 6px solid #4ebd44;">
+        <h2 class="section-title">About Nectarious Sun Power</h2>
+        <p style="font-size: 1.2rem; max-width: 800px;">We are a local Ahmedabad-based team on a mission to bring solar
+            to every home. With years of experience in rooftop engineering and a passion for sustainability, we deliver
+            quality without jargon. Every installation reflects our commitment to reliability, savings, and clean
+            future.</p>
+        <div style="display: flex; gap: 32px; margin-top: 32px; flex-wrap: wrap;">
+            <span><i class="fas fa-check-circle" style="color:#4ebd44;"></i> 8+ years local expertise</span>
+            <span><i class="fas fa-check-circle" style="color:#4ebd44;"></i> 500+ happy families</span>
+            <span><i class="fas fa-check-circle" style="color:#4ebd44;"></i> Certified engineers</span>
+        </div>
+    </div>
+
+    <!-- NO separate bottom CTA - removed as requested -->
     </div>
 
     <!-- MODAL: Site visit (original) -->
@@ -584,7 +755,7 @@
             <p style="margin-bottom: 20px;">Our Ahmedabad team will contact you shortly.</p>
             <form id="visitForm">
                 <input type="text" id="address" placeholder="Your address (area / full address)" required>
-                <input type="tel" id="mobile" placeholder="Mobile number" required maxlength="10" inputmode="numeric" pattern="[0-9]{10}">
+                <input type="tel" id="mobile" placeholder="Mobile number" required pattern="[0-9]{10}">
                 <button type="submit">Submit →</button>
                 <div id="formStatus"></div>
             </form>
@@ -601,7 +772,8 @@
                 <label><input type="radio" name="billingCycle" value="30" checked> 30 days cycle</label>
                 <label><input type="radio" name="billingCycle" value="60"> 60 days cycle</label>
             </div>
-            <input type="number" id="consumptionUnits" placeholder="Enter consumption in units (kWh)" min="1" step="1" required>
+            <input type="number" id="consumptionUnits" placeholder="Enter consumption in units (kWh)" min="1" step="1"
+                required>
             <button id="calculateBtn">Calculate</button>
             <div id="calculatorResult" class="calc-result" style="display: none;"></div>
         </div>
@@ -612,11 +784,16 @@
         <div class="modal-content">
             <span class="close-modal" id="closeContactModal">&times;</span>
             <h2><i class="fas fa-address-card"></i> Contact Nectarious</h2>
-            <div class="contact-detail-item"><i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> Kathwada, Ahmedabad - 3982430</div>
-            <div class="contact-detail-item"><i class="fas fa-phone-alt"></i> <strong>Phone:</strong> +91 95102 40106 , +91 81412 15921</div>
-            <div class="contact-detail-item"><i class="fas fa-envelope"></i> <strong>Email:</strong> nectarioussunpower@gmail.com</div>
-            <div class="contact-detail-item"><i class="fas fa-clock"></i> <strong>Office hours:</strong> Mon-Sat 10:00 AM – 6:00 PM</div>
-            <div class="contact-detail-item"><i class="fab fa-whatsapp"></i> <strong>WhatsApp:</strong> +91 95102 40106</div>
+            <div class="contact-detail-item"><i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> Kathwada,
+                Ahmedabad - 3982430</div>
+            <div class="contact-detail-item"><i class="fas fa-phone-alt"></i> <strong>Phone:</strong> +91 95102 40106 ,
+                +91 81412 15921</div>
+            <div class="contact-detail-item"><i class="fas fa-envelope"></i> <strong>Email:</strong>
+                nectarioussunpower@gmail.com</div>
+            <div class="contact-detail-item"><i class="fas fa-clock"></i> <strong>Office hours:</strong> Mon-Sat 10:00
+                AM – 6:00 PM</div>
+            <div class="contact-detail-item"><i class="fab fa-whatsapp"></i> <strong>WhatsApp:</strong> +91 95102 40106
+            </div>
         </div>
     </div>
 
@@ -625,9 +802,15 @@
         <div class="modal-content">
             <span class="close-modal" id="closeAboutModal">&times;</span>
             <h2><i class="fas fa-sun"></i> About Nectarious Sun Power</h2>
-            <p>Founded in Ahmedabad in 2024, Nectarious Sun Power began with a simple belief: every rooftop should generate its own clean energy. What started as a two-person consultation firm has grown into a team of 15+ certified engineers and advisors who have installed over 500 KW of solar capacity across Ahmedabad.</p>
-            <p style="margin-top:16px;">We are <strong>end-to-end solar partners</strong> — we don't just sell panels; we design energy independence. Our core team includes experienced electrical engineers and ex-Guvnl officials who help you navigate subsidies (PM Surya Ghar, Gujarat energy incentives) effortlessly.</p>
-            <p style="margin-top:16px;">We're proud to be rated 4.9/5 by 300+ homeowners. Our mission: make Ahmedabad the solar capital of Gujarat, one rooftop at a time. 🌞</p>
+            <p>Founded in Ahmedabad in 2024, Nectarious Sun Power began with a simple belief: every rooftop should
+                generate its own clean energy. What started as a two-person consultation firm has grown into a team of
+                15+ certified engineers and advisors who have installed over 500 KW of solar capacity across Ahmedabad.
+            </p>
+            <p style="margin-top:16px;">We are <strong>end-to-end solar partners</strong> — we don't just sell panels;
+                we design energy independence. Our core team includes experienced electrical engineers and ex-Guvnl
+                officials who help you navigate subsidies (PM Surya Ghar, Gujarat energy incentives) effortlessly.</p>
+            <p style="margin-top:16px;">We're proud to be rated 4.9/5 by 300+ homeowners. Our mission: make Ahmedabad
+                the solar capital of Gujarat, one rooftop at a time. 🌞</p>
             <p style="margin-top:20px;"><i class="fas fa-certificate" style="color:#4ebd44;"></i> MNRE empanelled</p>
         </div>
     </div>
@@ -644,35 +827,96 @@
                 <p>💡 <strong>Above 3 kW:</strong> ₹78,000 fixed (for residential)</p>
             </div>
             <div class="subsidy-detail">
-                <p><strong>Gujarat state additional incentives</strong> for housing societies & MSMEs: up to ₹20,000 extra per unit.</p>
+                <p><strong>Gujarat state additional incentives</strong> for housing societies & MSMEs: up to ₹20,000
+                    extra per unit.</p>
             </div>
-            <p><i class="fas fa-check-circle" style="color:#2f6b2f;"></i> <strong>We handle all paperwork</strong> – from application to net-metering approval. Zero hassle, maximum saving.</p>
-            <p style="margin-top:20px;">🔹 Easy financing: Easy EMI options available for eligible customers. Talk to our Consultant during free site visit.</p>
+            <p><i class="fas fa-check-circle" style="color:#2f6b2f;"></i> <strong>We handle all paperwork</strong> –
+                from application to net-metering approval. Zero hassle, maximum saving.</p>
+            <p style="margin-top:20px;">🔹 Easy financing: Easy EMI options available for eligible customers. Talk to
+                our Consultant during free site visit.</p>
         </div>
     </div>
 
     <!-- FOOTER -->
+    <!-- FOOTER -->
     <footer>
         <div class="container">
-            <div class="footer-grid">
-                <div><p><a href="https://www.google.com/maps/search/?api=1&query=Kathwada+Ahmedabad+3982430" target="_blank" style="color: inherit; text-decoration: none;"><i class="fas fa-map-pin"></i> Kathwada, Ahmedabad - 3982430</a></p>
-                    <p><a href="tel:+919510240106" style="color: inherit; text-decoration: none;"><i class="fas fa-phone-alt"></i> +91 95102 40106</a></p>
-                    <p><a href="mailto:nectarioussunpower@gmail.com" style="color: inherit; text-decoration: none;"><i class="fas fa-envelope"></i> nectarioussunpower@gmail.com</a></p>
+
+            <!-- First Row -->
+            <div class="row footer-grid gy-4">
+
+                <!-- 1st Column (Larger) -->
+                <div class="col-12 col-md-6 col-lg-5">
+                    <p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Kathwada+Ahmedabad+3982430"
+                            target="_blank" style="color: inherit; text-decoration: none;">
+                            <i class="fas fa-map-pin"></i> Kathwada, Ahmedabad - 3982430
+                        </a>
+                    </p>
+                    <p>
+                        <a href="tel:+919510240106" style="color: inherit; text-decoration: none;">
+                            <i class="fas fa-phone-alt"></i> +91 95102 40106
+                        </a>
+                    </p>
+                    <p>
+                        <a href="mailto:nectarioussunpower@gmail.com" style="color: inherit; text-decoration: none;">
+                            <i class="fas fa-envelope"></i> nectarioussunpower@gmail.com
+                        </a>
+                    </p>
                 </div>
-                <div><h4>Quick links</h4><a href="#" id="footerAbout">About</a><a href="#" id="footerServices">Services</a><a href="#" id="footerSubsidy">Subsidy</a><a href="#" id="footerContact">Contact</a></div>
-                <div><h4>Solutions</h4><a>Residential</a><a>Commercial</a><a>Societies</a><a>Net-metering</a></div>
-                <div><h4>Connect</h4>
-                    <a href="#" id="whatsappBtn"> <i class="fab fa-whatsapp"></i> WhatsApp</a>
-                    <a href="https://www.instagram.com/nectarious_sun_power?igsh=MWZsdXljMmozdGNvaw=="><i class="fab fa-instagram"></i> Instagram</a>
-                    <a href="https://www.facebook.com/share/18GH4cMkhL/"><i class="fab fa-facebook"></i> Facebook</a>
+
+                <!-- 2nd Column -->
+                <div class="col-6 col-md-3 col-lg-2">
+                    <h4>Quick links</h4>
+                    <a href="#" id="footerAbout">About</a>
+                    <a href="#" id="footerServices">Services</a>
+                    <a href="#" id="footerSubsidy">Subsidy</a>
+                    <a href="#" id="footerContact">Contact</a>
+                </div>
+
+                <!-- 3rd Column -->
+                <div class="col-6 col-md-3 col-lg-2">
+                    <h4>Solutions</h4>
+                    <a>Residential</a>
+                    <a>Commercial</a>
+                    <a>Societies</a>
+                    <a>Net-metering</a>
+                </div>
+
+                <!-- 4th Column -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <h4>Connect</h4>
+                    <a href="#" id="whatsappBtn">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                    <a href="https://www.instagram.com/nectarious_sun_power?igsh=MWZsdXljMmozdGNvaw==">
+                        <i class="fab fa-instagram"></i> Instagram
+                    </a>
+                    <a href="https://www.facebook.com/share/18GH4cMkhL/">
+                        <i class="fab fa-facebook"></i> Facebook
+                    </a>
+                </div>
+
             </div>
-            <div class="copyright">© 2026 Nectarious Sun Power — Trusted solar experts in Ahmedabad.</div>
+
+            <!-- Divider -->
+            <hr>
+
+            <!-- Copyright Row -->
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="copyright">
+                        © 2026 Nectarious Sun Power — Trusted solar experts in Ahmedabad.
+                    </div>
+                </div>
+            </div>
+
         </div>
     </footer>
 
     <script>
 
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
 
             emailjs.init("3UlC0QOcYqkxVF6iP");
 
@@ -685,7 +929,7 @@
             const form = document.getElementById('visitForm');
             const statusDiv = document.getElementById('formStatus');
 
-            form.addEventListener('submit', function(e) {
+            form.addEventListener('submit', function (e) {
                 e.preventDefault();
 
                 const address = document.getElementById('address').value.trim();
@@ -702,7 +946,7 @@
                 emailjs.send('service_xmtl56x', 'template_o4kpqyi', {
                     address: address,
                     mobile: mobile
-                }).then(function() {
+                }).then(function () {
                     statusDiv.style.color = '#4ebd44';
                     statusDiv.innerHTML = '✅ Request sent!';
                     form.reset();
@@ -710,14 +954,14 @@
                         visitModal.style.display = 'none';
                         statusDiv.innerHTML = '';
                     }, 1500);
-                }).catch(function(error) {
+                }).catch(function (error) {
                     console.error(error);
                     statusDiv.style.color = 'red';
                     statusDiv.innerHTML = '❌ Failed to send.';
                 });
             });
 
-                // ----- MODAL HANDLING -----
+            // ----- MODAL HANDLING -----
             // const visitModal = document.getElementById('visitModal');
             // const contactModal = document.getElementById('contactModal');
             // const aboutModal = document.getElementById('aboutModal');
@@ -727,22 +971,22 @@
             // Buttons / links that open modals
             document.getElementById('openModalBtn').addEventListener('click', (e) => { e.preventDefault(); visitModal.style.display = 'flex'; });
             document.getElementById('openCalculatorBtn').addEventListener('click', (e) => { e.preventDefault(); calculatorModal.style.display = 'flex'; });
-            
+
             document.getElementById('contactLink').addEventListener('click', (e) => { e.preventDefault(); contactModal.style.display = 'flex'; });
             document.getElementById('aboutLink').addEventListener('click', (e) => { e.preventDefault(); aboutModal.style.display = 'flex'; });
             document.getElementById('subsidyLink').addEventListener('click', (e) => { e.preventDefault(); subsidyModal.style.display = 'flex'; });
             document.getElementById('subsidyLinkFromBox').addEventListener('click', (e) => { e.preventDefault(); subsidyModal.style.display = 'flex'; });
-            
+
             // Footer links open same modals
             document.getElementById('footerAbout').addEventListener('click', (e) => { e.preventDefault(); aboutModal.style.display = 'flex'; });
             document.getElementById('footerSubsidy').addEventListener('click', (e) => { e.preventDefault(); subsidyModal.style.display = 'flex'; });
             document.getElementById('footerContact').addEventListener('click', (e) => { e.preventDefault(); contactModal.style.display = 'flex'; });
-            
+
             document.getElementById('homeLink').addEventListener('click', (e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
             document.getElementById('footerServices').addEventListener('click', (e) => { e.preventDefault(); window.scrollTo({ top: 700, behavior: 'smooth' }); });
 
             // Close buttons for each modal
-            document.querySelectorAll('.close-modal').forEach(btn => btn.addEventListener('click', function(e) {
+            document.querySelectorAll('.close-modal').forEach(btn => btn.addEventListener('click', function (e) {
                 visitModal.style.display = 'none';
                 contactModal.style.display = 'none';
                 aboutModal.style.display = 'none';
@@ -757,12 +1001,12 @@
                 if (e.target === subsidyModal) subsidyModal.style.display = 'none';
                 if (e.target === calculatorModal) calculatorModal.style.display = 'none';
             });
-            document.getElementById("whatsappBtn").addEventListener("click", function(e) {
+            document.getElementById("whatsappBtn").addEventListener("click", function (e) {
                 e.preventDefault();
 
                 const phoneNumber = "919510240106"; // Your number without +
                 const message = "Hello Nectarious Sun Power, I want a free solar consultation.";
-    
+
                 const encodedMessage = encodeURIComponent(message);
 
                 const url = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
@@ -770,11 +1014,11 @@
                 window.open(url, "_blank");
             });
             // Calculator functionality with updated formula: (consumption / cycle) / 4
-            document.getElementById('calculateBtn').addEventListener('click', function() {
+            document.getElementById('calculateBtn').addEventListener('click', function () {
                 const consumption = parseFloat(document.getElementById('consumptionUnits').value);
                 const cycle = parseInt(document.querySelector('input[name="billingCycle"]:checked').value); // 30 or 60
                 const resultDiv = document.getElementById('calculatorResult');
-                
+
                 if (isNaN(consumption) || consumption <= 0) {
                     resultDiv.style.display = 'block';
                     resultDiv.innerHTML = '⚠️ Please enter valid consumption units.';
@@ -785,7 +1029,7 @@
                 // Formula: (consumption / cycle) / 4
                 const dailyConsumption = consumption / cycle;      // units per day
                 const requiredKW = (dailyConsumption / 4).toFixed(2);  // kW needed
-                
+
                 resultDiv.style.display = 'block';
                 resultDiv.style.background = '#eef6ed';
                 resultDiv.innerHTML = `✅ Your estimated solar requirement: <strong>${requiredKW} kW</strong> (based on ${cycle}-day cycle, ${dailyConsumption.toFixed(2)} units/day)`;
@@ -796,4 +1040,5 @@
     </script>
     <!-- REMEMBER: Replace EmailJS placeholders: YOUR_PUBLIC_KEY, YOUR_SERVICE_ID, YOUR_TEMPLATE_ID, to_email -->
 </body>
+
 </html>
