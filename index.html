@@ -584,7 +584,7 @@
             <p style="margin-bottom: 20px;">Our Ahmedabad team will contact you shortly.</p>
             <form id="visitForm">
                 <input type="text" id="address" placeholder="Your address (area / full address)" required>
-                <input type="tel" id="mobile" placeholder="Mobile number" required pattern="[0-9]{10}">
+                <input type="tel" id="mobile" placeholder="Mobile number" required maxlength="10" inputmode="numeric" pattern="[0-9]{10}">
                 <button type="submit">Submit →</button>
                 <div id="formStatus"></div>
             </form>
@@ -671,11 +671,16 @@
     </footer>
 
     <script>
-        (function() {
-            // EmailJS init (placeholders – replace with actual keys)
-            // emailjs.init("YOUR_PUBLIC_KEY");  // <-- REPLACE?
+
+        document.addEventListener("DOMContentLoaded", function() {
 
             emailjs.init("3UlC0QOcYqkxVF6iP");
+
+            const visitModal = document.getElementById('visitModal');
+            const contactModal = document.getElementById('contactModal');
+            const aboutModal = document.getElementById('aboutModal');
+            const subsidyModal = document.getElementById('subsidyModal');
+            const calculatorModal = document.getElementById('calculatorModal');
 
             const form = document.getElementById('visitForm');
             const statusDiv = document.getElementById('formStatus');
@@ -692,37 +697,32 @@
                     return;
                 }
 
-                statusDiv.style.color = '#1e2f4e';
                 statusDiv.innerHTML = '⏳ Sending request...';
 
-                const templateParams = {
+                emailjs.send('service_xmtl56x', 'template_o4kpqyi', {
                     address: address,
                     mobile: mobile
-                };
-
-                emailjs.send('service_xmtl56x', 'template_o4kpqyi', templateParams)
-                    .then(function(response) {
-                        statusDiv.style.color = '#4ebd44';
-                        statusDiv.innerHTML = '✅ Request sent successfully!';
-                        form.reset();
-
-                        setTimeout(() => {
-                            visitModal.style.display = 'none';
-                            statusDiv.innerHTML = '';
-                        }, 1500);
-                    }, function(error) {
-                        statusDiv.style.color = 'red';
-                        statusDiv.innerHTML = '❌ Failed to send. Please try again.';
-                        console.error('EmailJS error:', error);
-                    });
+                }).then(function() {
+                    statusDiv.style.color = '#4ebd44';
+                    statusDiv.innerHTML = '✅ Request sent!';
+                    form.reset();
+                    setTimeout(() => {
+                        visitModal.style.display = 'none';
+                        statusDiv.innerHTML = '';
+                    }, 1500);
+                }).catch(function(error) {
+                    console.error(error);
+                    statusDiv.style.color = 'red';
+                    statusDiv.innerHTML = '❌ Failed to send.';
+                });
             });
-            
-            // ----- MODAL HANDLING -----
-            const visitModal = document.getElementById('visitModal');
-            const contactModal = document.getElementById('contactModal');
-            const aboutModal = document.getElementById('aboutModal');
-            const subsidyModal = document.getElementById('subsidyModal');
-            const calculatorModal = document.getElementById('calculatorModal');
+
+                // ----- MODAL HANDLING -----
+            // const visitModal = document.getElementById('visitModal');
+            // const contactModal = document.getElementById('contactModal');
+            // const aboutModal = document.getElementById('aboutModal');
+            // const subsidyModal = document.getElementById('subsidyModal');
+            // const calculatorModal = document.getElementById('calculatorModal');
 
             // Buttons / links that open modals
             document.getElementById('openModalBtn').addEventListener('click', (e) => { e.preventDefault(); visitModal.style.display = 'flex'; });
@@ -791,77 +791,8 @@
                 resultDiv.innerHTML = `✅ Your estimated solar requirement: <strong>${requiredKW} kW</strong> (based on ${cycle}-day cycle, ${dailyConsumption.toFixed(2)} units/day)`;
             });
 
-            // Visit form submission (EmailJS) – unchanged
-            const form = document.getElementById('visitForm');
-            const statusDiv = document.getElementById('formStatus');
-            form.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const address = document.getElementById('address').value.trim();
-            const mobile = document.getElementById('mobile').value.trim();
-
-            if (!address || !mobile) {
-                statusDiv.style.color = 'red';
-                statusDiv.innerHTML = 'Please fill both fields.';
-                return;
-            }
-/*
-            statusDiv.innerHTML = '⏳ Sending request...';
-
-            fetch("send-mail.php", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                },
-                body: `address=${encodeURIComponent(address)}&mobile=${encodeURIComponent(mobile)}`
-            })
-            .then(response => response.text())
-            .then(data => {
-                if (data === "success") {
-                    statusDiv.style.color = '#4ebd44';
-                    statusDiv.innerHTML = '✅ Request sent!';
-                    form.reset();
-                    setTimeout(() => {
-                        visitModal.style.display = 'none';
-                        statusDiv.innerHTML = '';
-                    }, 1500);
-                } else {
-                    statusDiv.style.color = 'red';
-                    statusDiv.innerHTML = '❌ Failed. Try again.';
-                }
-            })
-            .catch(() => {
-                statusDiv.style.color = 'red';
-                statusDiv.innerHTML = '❌ Error sending request.';
-            });
-*/
         });
-            // form.addEventListener('submit', function(e) {
-            //     e.preventDefault();
-            //     const address = document.getElementById('address').value.trim();
-            //     const mobile = document.getElementById('mobile').value.trim();
-            //     if (!address || !mobile) {
-            //         statusDiv.style.color = 'red'; statusDiv.innerHTML = 'Please fill both fields.'; return;
-            //     }
-            //     statusDiv.style.color = '#1e2f4e'; statusDiv.innerHTML = '⏳ Sending request...';
-            //     const templateParams = {
-            //         to_email: 'your-email@example.com',   // <-- REPLACE
-            //         from_name: 'Solar Site Visit',
-            //         address: address,
-            //         mobile: mobile,
-            //         message: `New site visit request from ${address}, mobile: ${mobile}`
-            //     };
-            //     emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
-            //         .then(() => {
-            //             statusDiv.style.color = '#4ebd44'; statusDiv.innerHTML = '✅ Request sent!';
-            //             form.reset();
-            //             setTimeout(() => { visitModal.style.display = 'none'; statusDiv.innerHTML = ''; }, 1500);
-            //         }, (err) => {
-            //             console.error(err);
-            //             statusDiv.style.color = 'red'; statusDiv.innerHTML = '❌ Failed. Try again or call.';
-            //         });
-            // });
-        })();
+
     </script>
     <!-- REMEMBER: Replace EmailJS placeholders: YOUR_PUBLIC_KEY, YOUR_SERVICE_ID, YOUR_TEMPLATE_ID, to_email -->
 </body>
