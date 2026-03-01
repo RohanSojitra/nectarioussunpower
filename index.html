@@ -675,6 +675,48 @@
             // EmailJS init (placeholders – replace with actual keys)
             // emailjs.init("YOUR_PUBLIC_KEY");  // <-- REPLACE?
 
+            emailjs.init("3UlC0QOcYqkxVF6iP");
+
+            const form = document.getElementById('visitForm');
+            const statusDiv = document.getElementById('formStatus');
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const address = document.getElementById('address').value.trim();
+                const mobile = document.getElementById('mobile').value.trim();
+
+                if (!address || !mobile) {
+                    statusDiv.style.color = 'red';
+                    statusDiv.innerHTML = 'Please fill both fields.';
+                    return;
+                }
+
+                statusDiv.style.color = '#1e2f4e';
+                statusDiv.innerHTML = '⏳ Sending request...';
+
+                const templateParams = {
+                    address: address,
+                    mobile: mobile
+                };
+
+                emailjs.send('service_xmtl56x', 'template_o4kpqyi', templateParams)
+                    .then(function(response) {
+                        statusDiv.style.color = '#4ebd44';
+                        statusDiv.innerHTML = '✅ Request sent successfully!';
+                        form.reset();
+
+                        setTimeout(() => {
+                            visitModal.style.display = 'none';
+                            statusDiv.innerHTML = '';
+                        }, 1500);
+                    }, function(error) {
+                        statusDiv.style.color = 'red';
+                        statusDiv.innerHTML = '❌ Failed to send. Please try again.';
+                        console.error('EmailJS error:', error);
+                    });
+            });
+            
             // ----- MODAL HANDLING -----
             const visitModal = document.getElementById('visitModal');
             const contactModal = document.getElementById('contactModal');
@@ -763,7 +805,7 @@
                 statusDiv.innerHTML = 'Please fill both fields.';
                 return;
             }
-
+/*
             statusDiv.innerHTML = '⏳ Sending request...';
 
             fetch("send-mail.php", {
@@ -792,6 +834,7 @@
                 statusDiv.style.color = 'red';
                 statusDiv.innerHTML = '❌ Error sending request.';
             });
+*/
         });
             // form.addEventListener('submit', function(e) {
             //     e.preventDefault();
